@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #ffdde1, #f7e4d6);
+            color: #2c3e50;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 1.9rem;
+            margin: 0;
+        }
+
+        .logout-btn {
+            background: #f5a623;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: #e88a12;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .dashboard-section h2 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .dashboard-section p {
+            margin-top: 0;
+            font-size: 1.05rem;
+            color: #7f8c8d;
+        }
+
+        .dashboard-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .dashboard-card h3 {
+            color: #f39c12;
+            margin-top: 0;
+        }
+
+        .dashboard-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0 0;
+        }
+
+        .dashboard-card ul li {
+            margin: 0.8rem 0;
+        }
+
+        .dashboard-card ul li a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .dashboard-card ul li a:hover {
+            color: #2980b9;
+        }
+
+        .footer {
+            background: #ecf0f1;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.95rem;
+            color: #7f8c8d;
+            margin-top: 3rem;
+            border-top: 1px solid #f1f1f1;
+        }
+
+        @media (max-width: 768px) {
+            .header .container, .container {
+                padding: 1rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .logout-btn {
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Admin Dashboard</h1>
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="dashboard-section">
+            <h2>Welcome, Admin!</h2>
+            <p>Manage users, review analytics and oversee the system.</p>
+        </section>
+
+        <section class="dashboard-card">
+            <h3>User Management</h3>
+            <ul>
+                <li><a href="/admin/users">View All Users</a></li>
+                <li><a href="/admin/create_user">Create New User</a></li>
+            </ul>
+        </section>
+
+        <section class="dashboard-card">
+            <h3>System Analytics</h3>
+            <ul>
+                <li><a href="/admin/analytics">View Spending Analytics

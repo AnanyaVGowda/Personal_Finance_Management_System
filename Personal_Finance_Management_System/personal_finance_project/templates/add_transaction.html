@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add {{ trans_type.capitalize() }} - {{ month }} {{ year }}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #fff3e0, #ffe0b2);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        h2 {
+            color: #ef6c00;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #bf360c;
+            display: block;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+            border: 2px solid #ffcc80;
+            border-radius: 10px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #ef6c00;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            background-color: #ef6c00;
+            color: white;
+            font-weight: bold;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e65100;
+        }
+
+        @media (max-width: 600px) {
+            form {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Add {{ trans_type.capitalize() }} - {{ month }} {{ year }}</h2>
+
+    <form method="POST">
+        {% if trans_type == 'expense' %}
+            <label for="category">Category:</label>
+            <select name="category" id="category" required>
+                {% for cat in categories %}
+                    <option value="{{ cat }}">{{ cat }}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <label for="description">Description:</label>
+            <input type="text" name="description" id="description" required><br><br>
+        {% endif %}
+
+        <label for="amount">Amount:</label>
+        <input type="number" name="amount" id="amount" step="0.01" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <a href="/dashboard">← Back to Dashboard</a>
+</body>
+</html>

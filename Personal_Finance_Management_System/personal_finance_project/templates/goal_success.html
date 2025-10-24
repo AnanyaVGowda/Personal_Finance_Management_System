@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goal Set Successfully</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0fdf4;
+            color: #1e4620;
+            margin: 0;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            color: #2e7d32;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .goal-summary {
+            text-align: left;
+            background-color: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .goal-summary p {
+            margin: 10px 0;
+            font-size: 1.05rem;
+        }
+
+        .goal-summary strong {
+            color: #2e7d32;
+        }
+
+        .flash-messages {
+            margin-bottom: 20px;
+        }
+
+        .flash-message {
+            padding: 10px;
+            background-color: #c8e6c9;
+            color: #2e7d32;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        a {
+            display: inline-block;
+            margin: 10px 10px 0 10px;
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        a:hover {
+            color: #1b5e20;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🎯 Goal Set Successfully!</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash-message {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% if goal %}
+            <div class="goal-summary">
+                <h3>Your New Goal:</h3>
+                <p><strong>Name:</strong> {{ goal.goal_name }}</p>
+                <p><strong>Target Amount:</strong> ₹{{ "%.2f"|format(goal.goal_amount) }}</p>
+                <p><strong>Target Date:</strong> {{ goal.target_date }}</p>
+                <p><strong>Current Amount Saved:</strong> ₹{{ "%.2f"|format(goal.current_amount) }}</p>
+            </div>
+        {% else %}
+            <p>Goal was set, but details could not be loaded. Return to the goals page.</p>
+        {% endif %}
+
+        <p><a href="{{ url_for('set_goal') }}">← Back to Goals</a></p>
+        <p><a href="{{ url_for('dashboard') }}">← Back to Dashboard</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user.name }}'s Transactions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            margin: 0;
+            padding: 40px 20px;
+            color: #1f2937;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .table-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        thead {
+            background-color: #f1f5f9;
+        }
+
+        th, td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: left;
+        }
+
+        tr:hover {
+            background-color: #f9fafb;
+        }
+
+        td {
+            color: #374151;
+        }
+
+        th {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #3b82f6;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            th, td {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>{{ user.name }}'s Transactions</h2>
+    
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th>Month</th>
+                    <th>Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in transactions %}
+                <tr>
+                    <td>{{ t.transaction_type }}</td>
+                    <td>₹{{ "%.2f"|format(t.amount) }}</td>
+                    <td>{{ t.category }}</td>
+                    <td>{{ t.date }}</td>
+                    <td>{{ t.month }}</td>
+                    <td>{{ t.year }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="6" style="text-align:center;">No transactions found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{{ url_for('admin_analytics') }}" class="back-link">← Back to Analytics</a>
+</body>
+</html>
